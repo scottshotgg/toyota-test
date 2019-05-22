@@ -1,0 +1,96 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Toyota Test",
+    "version": "1.0.0",
+    "title": "Toyota Test",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost",
+  "schemes": [
+    "http"
+  ],
+  "definitions": {
+    "currency": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "ask": {
+          "type": "string"
+        },
+        "bid": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "open": {
+          "type": "string"
+        },
+        "low": {
+          "type": "string"
+        },
+        "high": {
+          "type": "string"
+        },
+        "feeCurrency": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/currency/all": {
+      "get": {
+        "summary": "Retrieve information for every currency",
+        "responses": {
+          "200": {
+            "description": "success m8",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/currency"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/currency/{symbol}": {
+      "get": {
+        "summary": "Retrieve information about a single currency",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success m8",
+            "schema": {
+              "$ref": "#/definitions/currency"
+            }
+          },
+          "404": {
+            "description": "success m8"
+          }
+        }
+      }
+    }
+  }
+}
