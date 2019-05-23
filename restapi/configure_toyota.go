@@ -4,12 +4,14 @@ package restapi
 
 import (
 	"crypto/tls"
+	"fmt"
 	"net/http"
 
 	errors "github.com/go-openapi/errors"
 	runtime "github.com/go-openapi/runtime"
 	middleware "github.com/go-openapi/runtime/middleware"
 
+	"github.com/scottshotgg/toyota-test/handlers/get"
 	"github.com/scottshotgg/toyota-test/restapi/operations"
 )
 
@@ -28,6 +30,11 @@ func configureAPI(api *operations.ToyotaAPI) http.Handler {
 	//
 	// Example:
 	// api.Logger = log.Printf
+
+	api.GetCurrencyAllHandler = operations.GetCurrencyAllHandlerFunc(handlers.GetAll)
+	api.GetCurrencySymbolHandler = operations.GetCurrencySymbolHandlerFunc(handlers.GetSymbol)
+
+	fmt.Println("stuff", api.GetCurrencyAllHandler)
 
 	api.JSONConsumer = runtime.JSONConsumer()
 

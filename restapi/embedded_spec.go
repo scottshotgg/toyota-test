@@ -42,12 +42,15 @@ func init() {
         "summary": "Retrieve information for every currency",
         "responses": {
           "200": {
-            "description": "success m8",
+            "description": "Very success",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/currency"
-              }
+              "$ref": "#/definitions/currencies"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -71,21 +74,71 @@ func init() {
               "$ref": "#/definitions/currency"
             }
           },
+          "400": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
           "404": {
             "description": "success m8"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
     }
   },
   "definitions": {
+    "currencies": {
+      "type": "object",
+      "properties": {
+        "currencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/currency"
+          }
+        }
+      }
+    },
     "currency": {
       "type": "object",
       "properties": {
+        "ask": {
+          "type": "string"
+        },
+        "bid": {
+          "type": "string"
+        },
+        "feeCurrency": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "high": {
+          "type": "string"
+        },
         "id": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "low": {
+          "type": "string"
+        },
+        "open": {
           "type": "string"
         }
       }
+    },
+    "error": {
+      "type": "string"
     }
   }
 }`))
@@ -114,12 +167,15 @@ func init() {
         "summary": "Retrieve information for every currency",
         "responses": {
           "200": {
-            "description": "success m8",
+            "description": "Very success",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/currency"
-              }
+              "$ref": "#/definitions/currencies"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -143,21 +199,71 @@ func init() {
               "$ref": "#/definitions/currency"
             }
           },
+          "400": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
           "404": {
             "description": "success m8"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
     }
   },
   "definitions": {
+    "currencies": {
+      "type": "object",
+      "properties": {
+        "currencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/currency"
+          }
+        }
+      }
+    },
     "currency": {
       "type": "object",
       "properties": {
+        "ask": {
+          "type": "string"
+        },
+        "bid": {
+          "type": "string"
+        },
+        "feeCurrency": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "high": {
+          "type": "string"
+        },
         "id": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "low": {
+          "type": "string"
+        },
+        "open": {
           "type": "string"
         }
       }
+    },
+    "error": {
+      "type": "string"
     }
   }
 }`))

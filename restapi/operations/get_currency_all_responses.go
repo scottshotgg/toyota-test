@@ -16,7 +16,7 @@ import (
 // GetCurrencyAllOKCode is the HTTP code returned for type GetCurrencyAllOK
 const GetCurrencyAllOKCode int = 200
 
-/*GetCurrencyAllOK success m8
+/*GetCurrencyAllOK Very success
 
 swagger:response getCurrencyAllOK
 */
@@ -25,7 +25,7 @@ type GetCurrencyAllOK struct {
 	/*
 	  In: Body
 	*/
-	Payload []*models.Currency `json:"body,omitempty"`
+	Payload *models.Currencies `json:"body,omitempty"`
 }
 
 // NewGetCurrencyAllOK creates GetCurrencyAllOK with default headers values
@@ -35,13 +35,13 @@ func NewGetCurrencyAllOK() *GetCurrencyAllOK {
 }
 
 // WithPayload adds the payload to the get currency all o k response
-func (o *GetCurrencyAllOK) WithPayload(payload []*models.Currency) *GetCurrencyAllOK {
+func (o *GetCurrencyAllOK) WithPayload(payload *models.Currencies) *GetCurrencyAllOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get currency all o k response
-func (o *GetCurrencyAllOK) SetPayload(payload []*models.Currency) {
+func (o *GetCurrencyAllOK) SetPayload(payload *models.Currencies) {
 	o.Payload = payload
 }
 
@@ -49,12 +49,51 @@ func (o *GetCurrencyAllOK) SetPayload(payload []*models.Currency) {
 func (o *GetCurrencyAllOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
 
 	rw.WriteHeader(200)
-	payload := o.Payload
-	if payload == nil {
-		// return empty array
-		payload = make([]*models.Currency, 0, 50)
+	if o.Payload != nil {
+		payload := o.Payload
+		if err := producer.Produce(rw, payload); err != nil {
+			panic(err) // let the recovery middleware deal with this
+		}
 	}
+}
 
+// GetCurrencyAllInternalServerErrorCode is the HTTP code returned for type GetCurrencyAllInternalServerError
+const GetCurrencyAllInternalServerErrorCode int = 500
+
+/*GetCurrencyAllInternalServerError Internal Server Error
+
+swagger:response getCurrencyAllInternalServerError
+*/
+type GetCurrencyAllInternalServerError struct {
+
+	/*
+	  In: Body
+	*/
+	Payload models.Error `json:"body,omitempty"`
+}
+
+// NewGetCurrencyAllInternalServerError creates GetCurrencyAllInternalServerError with default headers values
+func NewGetCurrencyAllInternalServerError() *GetCurrencyAllInternalServerError {
+
+	return &GetCurrencyAllInternalServerError{}
+}
+
+// WithPayload adds the payload to the get currency all internal server error response
+func (o *GetCurrencyAllInternalServerError) WithPayload(payload models.Error) *GetCurrencyAllInternalServerError {
+	o.Payload = payload
+	return o
+}
+
+// SetPayload sets the payload to the get currency all internal server error response
+func (o *GetCurrencyAllInternalServerError) SetPayload(payload models.Error) {
+	o.Payload = payload
+}
+
+// WriteResponse to the client
+func (o *GetCurrencyAllInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.WriteHeader(500)
+	payload := o.Payload
 	if err := producer.Produce(rw, payload); err != nil {
 		panic(err) // let the recovery middleware deal with this
 	}

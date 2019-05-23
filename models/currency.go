@@ -15,8 +15,32 @@ import (
 // swagger:model currency
 type Currency struct {
 
+	// ask
+	Ask string `json:"ask,omitempty"`
+
+	// bid
+	Bid string `json:"bid,omitempty"`
+
+	// fee currency
+	FeeCurrency string `json:"feeCurrency,omitempty"`
+
+	// full name
+	FullName string `json:"fullName,omitempty"`
+
+	// high
+	High string `json:"high,omitempty"`
+
 	// id
 	ID string `json:"id,omitempty"`
+
+	// last
+	Last string `json:"last,omitempty"`
+
+	// low
+	Low string `json:"low,omitempty"`
+
+	// open
+	Open string `json:"open,omitempty"`
 }
 
 // Validate validates this currency

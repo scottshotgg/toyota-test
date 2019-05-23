@@ -57,6 +57,48 @@ func (o *GetCurrencySymbolOK) WriteResponse(rw http.ResponseWriter, producer run
 	}
 }
 
+// GetCurrencySymbolBadRequestCode is the HTTP code returned for type GetCurrencySymbolBadRequest
+const GetCurrencySymbolBadRequestCode int = 400
+
+/*GetCurrencySymbolBadRequest Not Found
+
+swagger:response getCurrencySymbolBadRequest
+*/
+type GetCurrencySymbolBadRequest struct {
+
+	/*
+	  In: Body
+	*/
+	Payload models.Error `json:"body,omitempty"`
+}
+
+// NewGetCurrencySymbolBadRequest creates GetCurrencySymbolBadRequest with default headers values
+func NewGetCurrencySymbolBadRequest() *GetCurrencySymbolBadRequest {
+
+	return &GetCurrencySymbolBadRequest{}
+}
+
+// WithPayload adds the payload to the get currency symbol bad request response
+func (o *GetCurrencySymbolBadRequest) WithPayload(payload models.Error) *GetCurrencySymbolBadRequest {
+	o.Payload = payload
+	return o
+}
+
+// SetPayload sets the payload to the get currency symbol bad request response
+func (o *GetCurrencySymbolBadRequest) SetPayload(payload models.Error) {
+	o.Payload = payload
+}
+
+// WriteResponse to the client
+func (o *GetCurrencySymbolBadRequest) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.WriteHeader(400)
+	payload := o.Payload
+	if err := producer.Produce(rw, payload); err != nil {
+		panic(err) // let the recovery middleware deal with this
+	}
+}
+
 // GetCurrencySymbolNotFoundCode is the HTTP code returned for type GetCurrencySymbolNotFound
 const GetCurrencySymbolNotFoundCode int = 404
 
@@ -79,4 +121,46 @@ func (o *GetCurrencySymbolNotFound) WriteResponse(rw http.ResponseWriter, produc
 	rw.Header().Del(runtime.HeaderContentType) //Remove Content-Type on empty responses
 
 	rw.WriteHeader(404)
+}
+
+// GetCurrencySymbolInternalServerErrorCode is the HTTP code returned for type GetCurrencySymbolInternalServerError
+const GetCurrencySymbolInternalServerErrorCode int = 500
+
+/*GetCurrencySymbolInternalServerError Internal Server Error
+
+swagger:response getCurrencySymbolInternalServerError
+*/
+type GetCurrencySymbolInternalServerError struct {
+
+	/*
+	  In: Body
+	*/
+	Payload models.Error `json:"body,omitempty"`
+}
+
+// NewGetCurrencySymbolInternalServerError creates GetCurrencySymbolInternalServerError with default headers values
+func NewGetCurrencySymbolInternalServerError() *GetCurrencySymbolInternalServerError {
+
+	return &GetCurrencySymbolInternalServerError{}
+}
+
+// WithPayload adds the payload to the get currency symbol internal server error response
+func (o *GetCurrencySymbolInternalServerError) WithPayload(payload models.Error) *GetCurrencySymbolInternalServerError {
+	o.Payload = payload
+	return o
+}
+
+// SetPayload sets the payload to the get currency symbol internal server error response
+func (o *GetCurrencySymbolInternalServerError) SetPayload(payload models.Error) {
+	o.Payload = payload
+}
+
+// WriteResponse to the client
+func (o *GetCurrencySymbolInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.WriteHeader(500)
+	payload := o.Payload
+	if err := producer.Produce(rw, payload); err != nil {
+		panic(err) // let the recovery middleware deal with this
+	}
 }

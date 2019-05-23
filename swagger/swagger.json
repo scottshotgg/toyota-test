@@ -49,6 +49,20 @@
           "type": "string"
         }
       }
+    },
+    "currencies": {
+      "type": "object",
+      "properties": {
+        "currencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/currency"
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "string"
     }
   },
   "paths": {
@@ -57,12 +71,15 @@
         "summary": "Retrieve information for every currency",
         "responses": {
           "200": {
-            "description": "success m8",
+            "description": "Very success",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/currency"
-              }
+              "$ref": "#/definitions/currencies"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -86,8 +103,20 @@
               "$ref": "#/definitions/currency"
             }
           },
+          "400": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
           "404": {
             "description": "success m8"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
