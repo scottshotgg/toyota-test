@@ -22,7 +22,7 @@ var (
 func init() {
 	dir, derr := os.Getwd()
 	if derr != nil {
-		err = errors.Wrap(err, "ioutil.ReadFile")
+		err = errors.Wrap(err, "os.Getwd")
 		log.Printf("Error: %+v\n", err)
 
 		os.Exit(9)
